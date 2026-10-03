@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Surface Support</title>
+<meta name="description" content="How to use World Surface, an iPhone camera that slit-scans with the back and front cameras at once to collect surfaces from around the world.">
+<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/worldsurface/">
+<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/worldsurface/en/">
+<style>
+:root {
+  --key: #1F6F78;
+  --key-deep: #144E55;
+  --on-key: #ffffff;
+  --warm: #B5562F;
+  --ink: #1c1c1e;
+  --muted: #5f6b70;
+  --line: #e1e8e9;
+  --bg: #ffffff;
+  --code-bg: #f3f8f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --key: #6CC3C8; --key-deep: #9ADDE0; --on-key: #0d2224; --warm: #E79A72;
+    --ink: #ececec; --muted: #a3acaf; --line: #2c3336; --bg: #111416; --code-bg: #1a1f21;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.7; font-size: 16px;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+.lang { display: flex; justify-content: flex-end; gap: 6px; padding-top: 18px; font-size: 14px; color: var(--muted); }
+.lang a { text-decoration: none; }
+.lang a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+header { padding: 24px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.brand { display: flex; align-items: center; gap: 16px; }
+.brand img { width: 68px; height: 68px; border-radius: 15px; flex: none; overflow: hidden; background: var(--code-bg); font-size: 11px; color: var(--muted); }
+h1 { font-size: 30px; margin: 0; letter-spacing: .01em; }
+.tagline { color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+h2 { font-size: 22px; margin: 52px 0 14px; padding-top: 8px; }
+h3 { font-size: 17px; margin: 32px 0 10px; }
+p, li { color: var(--ink); }
+a { color: var(--key); }
+nav.toc { background: var(--code-bg); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-top: 28px; }
+nav.toc ol { margin: 0; padding-left: 22px; }
+nav.toc li { margin: 4px 0; }
+code { background: var(--code-bg); padding: 2px 6px; border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; overflow-wrap: anywhere; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+th { background: var(--code-bg); font-weight: 600; white-space: nowrap; }
+td:first-child { min-width: 7.5em; }
+.note { border-left: 3px solid var(--key); background: var(--code-bg);
+  padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+.note p { margin: 0; }
+.note p + p { margin-top: 8px; }
+.warn { border-left-color: var(--warm); }
+ol.steps { padding-left: 0; list-style: none; counter-reset: step; }
+ol.steps > li { counter-increment: step; position: relative; padding-left: 44px; margin: 22px 0; }
+ol.steps > li::before {
+  content: counter(step); position: absolute; left: 0; top: 1px;
+  width: 30px; height: 30px; border-radius: 50%; background: var(--key); color: var(--on-key);
+  display: grid; place-items: center; font-weight: 700; font-size: 15px;
+}
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; margin: 20px 0; }
+.pair div { background: var(--code-bg); border: 1px solid var(--line); border-top: 3px solid var(--key);
+  border-radius: 10px; padding: 12px 16px; }
+.pair div.front { border-top-color: var(--warm); }
+.pair strong { display: block; }
+.pair span { color: var(--muted); font-size: 14px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: 20px; margin: 24px 0; }
+.shots figure { margin: 0; }
+.shots img { display: block; width: 100%; max-width: 300px; height: auto;
+  border-radius: 18px; border: 1px solid var(--line); background: var(--code-bg); }
+.shots figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; line-height: 1.5; }
+footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px; }
+.pill { display: inline-block; background: var(--code-bg); border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 12px; font-size: 13px; color: var(--muted); margin: 2px 4px 2px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="lang" aria-label="Language">
+  <a href="../index.html" lang="ja">日本語</a>
+  <span aria-hidden="true">/</span>
+  <a href="index.html" aria-current="page">English</a>
+</nav>
+
+<header>
+  <div class="brand">
+    <img src="../icon.png" alt="World Surface app icon">
+    <div>
+      <h1>World Surface</h1>
+      <p class="tagline">A camera for collecting the surfaces of the world</p>
+    </div>
+  </div>
+</header>
+
+<p>
+  World Surface is an iPhone camera for collecting interesting surfaces and textures,
+  wherever you happen to find them. It works by <strong>slit-scanning</strong>.
+</p>
+
+<p>
+  A slit-scan takes just one thin vertical line (the “slit”) from the center of the camera image,
+  frame after frame, and places the lines side by side in the order they were captured.
+  The result is a single long image.
+  Move the phone sideways and the space you pass becomes the image.
+  Hold it still and what changes in front of it over time becomes the image instead.
+</p>
+
+<p>
+  World Surface records with the <strong>back and front cameras at the same time</strong>,
+  so every scan holds two things in one record:
+</p>
+
+<div class="pair">
+  <div><strong>Back camera</strong><span>the world in front of you</span></div>
+  <div class="front"><strong>Front camera</strong><span>your side: the person holding the phone</span></div>
+</div>
+
+<p>
+  <span class="pill">Coming to the App Store</span>
+  <span class="pill">iPhone 11 or later · iOS 26 or later</span>
+</p>
+
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#scan">Scanning</a></li>
+    <li><a href="#screen">The screen while scanning</a></li>
+    <li><a href="#assist">Scanning aids</a></li>
+    <li><a href="#viewer">Viewing in 3D</a></li>
+    <li><a href="#save">What gets saved</a></li>
+    <li><a href="#gallery">Past scans</a></li>
+    <li><a href="#tips">Tips</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</nav>
+
+<h2 id="scan">1. Scanning</h2>
+
+<ol class="steps">
+  <li><p>Open the app and point the phone at what you want to scan.</p></li>
+  <li><p>Press and hold a <strong>volume button (+ or −)</strong> or the <strong>Camera Control</strong>. The app scans for as long as you hold it.</p></li>
+  <li><p>Let go to stop. The scan is saved to your Photos library and then opens in the 3D view.</p></li>
+</ol>
+
+<p>iPhones without Camera Control work fine with the volume buttons alone.</p>
+
+<div class="note">
+  <p>
+    If you would rather not hold the button down, change the recording mode in Settings to
+    <strong>tap to start, tap again to stop</strong>. One press starts the scan; the next press stops and saves it.
+  </p>
+</div>
+
+<h3>Button assignments</h3>
+<p>
+  iOS reports the volume buttons and the Camera Control to apps as two kinds of button,
+  shown in Settings as A (primary) and B (secondary).
+  You can give each of them one of the following jobs. Both start out as Record.
+</p>
+
+<table>
+  <tr><th>Assignment</th><th>What a press does</th></tr>
+  <tr><td>Record</td><td>Starts and stops a scan</td></tr>
+  <tr><td>Toggle back LED</td><td>Turns the back light on or off for scanning</td></tr>
+  <tr><td>Toggle horizon lock</td><td>Turns <a href="#horizon">horizon lock</a> on or off</td></tr>
+  <tr><td>Not used</td><td>Nothing</td></tr>
+</table>
+
+<p>If neither A nor B is set to Record, a record button appears on screen.</p>
+
+<h2 id="screen">2. The screen while scanning</h2>
+
+<p>
+  The scan fills the screen as it grows. The back-camera and front-camera results are shown
+  one above the other when you hold the phone upright, and side by side when you hold it sideways.
+</p>
+<p>
+  Small live previews of both cameras sit in a corner. The <strong>red line</strong> on them marks
+  where the slit is being taken.
+</p>
+<p>
+  The screen orientation is locked during a scan, so turning the phone partway through will not flip the layout.
+</p>
+
+<div class="shots">
+  <figure>
+    <img src="../shots/main.png" width="300" loading="lazy"
+         alt="Main screen during a scan: the back-camera and front-camera results stacked one above the other, with small previews of both cameras in a corner">
+    <figcaption>Main screen during a scan</figcaption>
+  </figure>
+</div>
+
+<h2 id="assist">3. Scanning aids</h2>
+
+<h3 id="motion">Speed that follows the motion (optical flow)</h3>
+<p>
+  Optical flow is a way of measuring how far, and in which direction, things in the picture have moved
+  between one frame and the next. World Surface uses it to judge how much the picture is moving and
+  adjusts how fast it writes slits:
+</p>
+<ul>
+  <li>When nothing is moving, it stops writing (0 fps).</li>
+  <li>The faster the picture moves, the more slits it writes per second, up to the camera’s maximum (30 or 60 fps).</li>
+  <li>If the motion is faster still, it makes each slit wider (1–20 px).</li>
+</ul>
+<p>
+  This also reacts when the phone is fixed in place but the subject moves, such as people walking by or water.
+  You can turn it off in Settings.
+</p>
+
+<h3 id="horizon">Horizon lock</h3>
+<p>
+  Using the gyroscope (the sensor that measures how the phone tilts and turns),
+  the app keeps the slit vertical relative to the world even when the phone leans to one side,
+  much like the horizon leveling on action cameras. It can be turned on or off in Settings.
+</p>
+
+<h3>Back LED</h3>
+<p>The back light can be switched on for the duration of each scan. It can be turned on or off in Settings.</p>
+
+<h2 id="viewer">4. Viewing in 3D</h2>
+
+<p>
+  When a scan ends, it opens in a 3D view. (You can turn this off in Settings.)
+  Along the bottom you can choose between three ways of looking at it.
+</p>
+
+<h3>Flat</h3>
+<p>
+  The scan as a thin board. <strong>The front face shows the back camera; the reverse shows the front camera.</strong>
+  Drag to rotate, pinch to zoom, and use the flip button to turn the board over.
+</p>
+
+<h3>Solid</h3>
+<p>
+  The board is bent to follow how the phone moved during the scan.
+  The shape is rebuilt from the <strong>orientation</strong> recorded by the gyroscope and the <strong>actual movement</strong> measured by optical flow.
+</p>
+<table>
+  <tr><th>How the phone moved</th><th>Resulting shape</th></tr>
+  <tr><td>Straight sideways</td><td>A flat board</td></tr>
+  <tr><td>Walking around an object, such as a tree trunk</td><td>A cylinder seen from outside</td></tr>
+  <tr><td>Turning on the spot</td><td>A panorama-like curve seen from inside</td></tr>
+  <tr><td>Shaking up and down</td><td>Waves</td></tr>
+</table>
+<p>
+  The measured movement sets the spacing between slits, so parts you moved through slowly shrink and parts you moved through quickly stretch out, bringing the proportions of what you scanned close to the real thing.
+  Because the app also knows whether you moved left or right, hollows and bulges are decided automatically.
+</p>
+<p>
+  Turn off the measured-movement button to build the shape from orientation alone (the image keeps its own proportions).
+  Orientation alone cannot tell left from right, so if the shape looks inside out, use the reverse button to swap hollows and bulges.
+  Older scans without a movement record are also built from orientation alone.
+</p>
+
+<h3>Lenticular</h3>
+<p>
+  A lenticular print is covered with a sheet of tiny ridge-shaped lenses, so that it shows a different
+  picture depending on the angle you look from. This view imitates one: the two images are cut into
+  thin vertical stripes and interleaved.
+</p>
+<p>
+  Tilt the phone left and right to switch between the back-camera and front-camera image.
+  In between, the two blend together as stripes.
+</p>
+<p>
+  If you turn on face position, the front camera finds your face and its position is used instead of the tilt.
+  It follows where your face is, not where your eyes are looking.
+</p>
+
+<h3>Exporting USDZ</h3>
+<p>
+  Flat and Solid can be exported as a USDZ file (Apple’s 3D file format).
+  If you are looking at Solid, the bent shape is what gets exported.
+  The file opens in the Files app and in AR Quick Look.
+</p>
+
+<div class="shots">
+  <figure>
+    <img src="../shots/viewer-flat.png" width="300" loading="lazy"
+         alt="3D view in Flat mode: a thin board carrying the scan, seen at an angle">
+    <figcaption>Flat</figcaption>
+  </figure>
+  <figure>
+    <img src="../shots/viewer-solid.png" width="300" loading="lazy"
+         alt="3D view in Solid mode: the board bent to follow how the phone moved during the scan">
+    <figcaption>Solid</figcaption>
+  </figure>
+  <figure>
+    <img src="../shots/lenticular.png" width="300" loading="lazy"
+         alt="Lenticular view: the back-camera and front-camera images mixed together in thin vertical stripes">
+    <figcaption>Lenticular</figcaption>
+  </figure>
+</div>
+
+<h2 id="save">5. What gets saved</h2>
+
+<h3>Images</h3>
+<p>
+  Each scan is saved automatically to your Photos library as a PNG: one image that combines the back and front results.
+  In Settings you can choose how the two are arranged:
+</p>
+<ul>
+  <li>Stacked: back on top, front below</li>
+  <li>Side by side: back on the left, front on the right</li>
+</ul>
+<p>
+  You can also choose to save the back-only and front-only images as well.
+  Their file names end in <code>_back</code> and <code>_front</code>.
+</p>
+<p>
+  Scans made with the phone held sideways are tagged so that Photos shows them the right way up.
+  With full Photos access, scans are also added to an album named “World Surface”.
+</p>
+
+<h3 id="track">Orientation record</h3>
+<p>
+  For every slit, the app records which way the phone was facing at that moment (from the gyroscope)
+  and stores the record inside the saved PNG, as an extra text chunk.
+  The image still opens normally in any app.
+  When you reopen a scan from <a href="#gallery">past scans</a>, this record is used to rebuild the Solid shape.
+</p>
+
+<h3 id="location">Location</h3>
+<p>
+  If you turn on location recording, the app uses GPS to record <strong>where the scan started</strong>.
+  Location is only read while the app is in use. The recorded location goes into:
+</p>
+<ul>
+  <li>The file name, for example <code>slitscan_7998x3840_20261003-113147_N35.6812_E139.7671</code></li>
+  <li>The Photos location of the image (it shows on the map)</li>
+  <li>The orientation record inside the PNG</li>
+</ul>
+<p>It is also shown in the 3D view.</p>
+
+<div class="note warn">
+  <p>
+    <strong>If you share the image or file, you share where it was taken.</strong>
+    To keep coordinates out of file names only, turn off the option that adds them to the file name.
+    To stop recording location altogether, turn off location recording.
+  </p>
+</div>
+
+<h2 id="gallery">6. Past scans</h2>
+
+<p>
+  Open this from the top-right of the main screen. It lists <strong>only the scans saved by this app</strong>;
+  none of your other photos appear. Tap a scan to open it in the 3D view again.
+</p>
+
+<div class="shots">
+  <figure>
+    <img src="../shots/gallery.png" width="300" loading="lazy"
+         alt="The past scans list, showing thumbnails of scans saved by this app">
+    <figcaption>Past scans</figcaption>
+  </figure>
+</div>
+
+<h3>About Photos access</h3>
+<p>
+  iOS lets you decide how much of your Photos library each app can use. World Surface needs:
+</p>
+<ul>
+  <li><strong>To save scans:</strong> “add only” access is enough. The app does not need to read your photos for this.</li>
+  <li><strong>To view past scans:</strong> read access. You are asked the first time you open the list.</li>
+</ul>
+
+<table>
+  <tr><th>Read access</th><th>What works</th></tr>
+  <tr><td>None</td><td>Past scans cannot be opened. Scanning and saving still work.</td></tr>
+  <tr><td>Limited access</td><td>Scans this app saved are visible. Scans saved before you chose limited access appear once you add them with “select more photos”. The album is not created.</td></tr>
+  <tr><td>Full access</td><td>All your scans are visible, and the “World Surface” album is created.</td></tr>
+</table>
+
+<div class="note">
+  <p>
+    Even with full access, the app only reads the scans it saved itself.
+    You can change the access level by opening World Surface in the iPhone Settings app and choosing Photos.
+  </p>
+</div>
+
+<h2 id="tips">7. Tips</h2>
+
+<ul>
+  <li><strong>For a surface:</strong> hold the phone steady, parallel to the wall or ground, and slide it slowly sideways.</li>
+  <li><strong>For a cylinder:</strong> keep the phone pointed at a tree trunk and walk all the way around it. Solid view shows it as a cylinder.</li>
+  <li><strong>For clean results:</strong> a tripod or a camera slider keeps the motion even.</li>
+  <li><strong>For time:</strong> fix the phone in place and the changes in front of it become the image. Since writing stops while nothing moves, turn off the optical-flow speed control if you want it to keep writing regardless.</li>
+</ul>
+
+<div class="note warn">
+  <p>
+    <strong>Watch the battery and heat.</strong>
+    Processing 4K video from two cameras at once uses a lot of power and can make the phone warm.
+  </p>
+  <p>
+    Long 4K scans produce large PNG files, often tens of megabytes each, so keep an eye on your storage.
+  </p>
+</div>
+
+<h2 id="faq">8. FAQ</h2>
+
+<h3>The volume buttons don’t change the volume while the app is open</h3>
+<p>
+  The app uses them as shutter buttons. To get normal volume buttons back,
+  set <strong>both A and B to Not used</strong> in the button assignment settings.
+  A record button then appears on screen instead.
+</p>
+
+<h3>Why does it need both cameras?</h3>
+<p>
+  The app is built around recording the world in front of you and your own side in the same scan.
+  So it only runs on iPhones that can use the back and front cameras at the same time (iPhone 11 or later).
+</p>
+
+<h3>The Solid shape looks inside out</h3>
+<p>
+  With measured movement on, this is decided automatically from the direction you moved.
+  With it off (orientation only), the app cannot tell whether the phone moved left or right, so tap the reverse button to swap the hollows and bulges.
+</p>
+
+<h3>Where is the location stored, and how do I turn it off?</h3>
+<p>
+  In the file name, in the Photos location, and in the orientation record inside the PNG.
+  Turn off location recording in Settings to stop it, or turn off just the file-name option
+  to keep coordinates out of file names. See <a href="#location">Location</a> for details.
+</p>
+
+<h3>Which Photos access should I choose?</h3>
+<p>
+  “Add only” is enough to scan and save. To look at past scans in 3D again, choose limited or full access.
+  The “World Surface” album is only created with full access.
+  Whichever you choose, the app only reads the scans it saved itself.
+  See <a href="#gallery">Past scans</a> for details.
+</p>
+
+<h2 id="requirements">9. Requirements</h2>
+<ul>
+  <li>iPhone 11 or later (a model that can use the back and front cameras at the same time)</li>
+  <li>iOS 26 or later</li>
+  <li>Coming to the App Store</li>
+</ul>
+
+<h2 id="contact">10. Contact</h2>
+<p>
+  For bug reports and requests, please get in touch below.
+  It helps to include your iPhone model, iOS version, and the steps that lead to the problem.
+</p>
+<ul>
+  <li>GitHub: <a href="https://github.com/RyuFurusawa/worldsurface/issues">github.com/RyuFurusawa/worldsurface/issues</a></li>
+  <li>Email: <a href="mailto:ryu.furusawa@gmail.com">ryu.furusawa@gmail.com</a></li>
+</ul>
+<p>For how the app handles your data, see the <a href="privacy.html">Privacy Policy</a>.</p>
+
+<footer>
+  <p><a href="index.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="../index.html" lang="ja">日本語</a></p>
+  <p>World Surface · Ryu Furusawa</p>
+</footer>
+</div>
+</body>
+</html>

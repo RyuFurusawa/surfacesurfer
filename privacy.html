@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Surface プライバシーポリシー</title>
+<meta name="description" content="World Surface が扱うデータについて。">
+<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/worldsurface/privacy.html">
+<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/worldsurface/en/privacy.html">
+<style>
+:root {
+  --key: #1F6F78;
+  --key-deep: #144E55;
+  --on-key: #ffffff;
+  --warm: #B5562F;
+  --ink: #1c1c1e;
+  --muted: #5f6b70;
+  --line: #e1e8e9;
+  --bg: #ffffff;
+  --code-bg: #f3f8f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --key: #6CC3C8; --key-deep: #9ADDE0; --on-key: #0d2224; --warm: #E79A72;
+    --ink: #ececec; --muted: #a3acaf; --line: #2c3336; --bg: #111416; --code-bg: #1a1f21;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.85; font-size: 16px;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+.lang { display: flex; justify-content: flex-end; gap: 6px; padding-top: 18px; font-size: 14px; color: var(--muted); }
+.lang a { text-decoration: none; }
+.lang a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+header { padding: 24px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.brand { display: flex; align-items: center; gap: 16px; }
+.brand img { width: 68px; height: 68px; border-radius: 15px; flex: none; overflow: hidden; background: var(--code-bg); font-size: 11px; color: var(--muted); }
+h1 { font-size: 30px; margin: 0; letter-spacing: .02em; }
+.tagline { color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+h2 { font-size: 22px; margin: 52px 0 14px; padding-top: 8px; }
+h3 { font-size: 17px; margin: 32px 0 10px; }
+p, li { color: var(--ink); }
+a { color: var(--key); }
+code { background: var(--code-bg); padding: 2px 6px; border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; overflow-wrap: anywhere; }
+.note { border-left: 3px solid var(--key); background: var(--code-bg);
+  padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+.note p { margin: 0; }
+.note p + p { margin-top: 8px; }
+.warn { border-left-color: var(--warm); }
+footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="lang" aria-label="言語">
+  <a href="privacy.html" aria-current="page" lang="ja">日本語</a>
+  <span aria-hidden="true">/</span>
+  <a href="en/privacy.html" lang="en">English</a>
+</nav>
+
+<header>
+  <div class="brand">
+    <img src="icon.png" alt="World Surface のアイコン">
+    <div>
+      <h1>プライバシーポリシー</h1>
+      <p class="tagline">World Surface</p>
+    </div>
+  </div>
+</header>
+
+<p>施行日: 2026-10-03</p>
+
+<h2>要点</h2>
+<div class="note">
+  <p>
+    World Surface には、<strong>アカウント、広告、解析、追跡の仕組みはありません</strong>。アプリが<strong>データをネットワークへ送ることはありません</strong>。撮影、映像の動きの解析（オプティカルフロー）、顔の検出、3D の表示は、すべて iPhone の中で行います。開発者がデータを受け取ることもありません。</p>
+</div>
+
+<h2>カメラ</h2>
+<p>
+  スキャンを作るために、背面と前面のカメラを使います。画像が残るのは、利用者自身の写真ライブラリへ保存したときだけです。
+</p>
+<p>
+  前面カメラの画像には、iPhone を持っている人（多くの場合、利用者自身）が写ります。保存した画像を人に渡すと、その姿も一緒に伝わります。
+</p>
+
+<h2>顔の検出</h2>
+<p>
+  3D の画面の「レンチキュラー」で「顔の位置で切り替え」をオンにしたときだけ、前面カメラの映像から顔の位置を検出します。検出はその場で iPhone の中だけで行い、画像も顔のデータも保存せず、送ることもありません。使うのは顔が画面のどこにあるかだけで、顔が誰かを見分けることはしません。
+</p>
+
+<h2>写真ライブラリ</h2>
+<ul>
+  <li>スキャンを保存するために、写真ライブラリへの<strong>追加</strong>の許可を使います。</li>
+  <li>
+    写真を<strong>読む</strong>許可は、「これまでのスキャン」で、利用者が以前に保存したスキャンを表示するためだけに使います。探すのはこのアプリが保存したスキャンだけです。手がかりにするのは、保存したときに記録した写真の識別子、アルバム「World Surface」、ファイル名（<code>slitscan_</code> で始まる PNG）です。ほかの写真の画像を読み込んだり、表示したり、送ったりすることはありません。</li>
+  <li>アルバム「World Surface」は、写真へのアクセスが「すべての写真」のときだけ作ります。</li>
+</ul>
+
+<h2>位置情報</h2>
+<p>
+  設定の「撮影場所を記録」がオンのときだけ、<strong>アプリを使っている間に限って</strong>位置を取得し、スキャンを始めた場所を記録します。記録した場所は、次のところに入ります。
+</p>
+<ul>
+  <li>保存した画像の、写真アプリでの「場所」</li>
+  <li>ファイル名（「ファイル名に座標を入れる」がオンのとき）</li>
+  <li>PNG の中に入れる向きの記録</li>
+</ul>
+<p>アプリが位置情報をどこかへ送ることはありません。</p>
+
+<div class="note warn">
+  <p>
+    <strong>画像やファイルを人に渡すと、撮影場所も一緒に伝わります。</strong>ファイル名の座標だけを外すには「ファイル名に座標を入れる」を、場所をまったく記録しないようにするには「撮影場所を記録」をオフにしてください。位置情報の利用そのものは、iPhone の設定アプリでいつでも止められます。</p>
+</div>
+
+<h2>モーションセンサー</h2>
+<p>
+  ジャイロと加速度センサーを、水平維持、向きの記録、「レンチキュラー」での傾きの検出に使います。向きの記録（スリット 1 本ごとの iPhone の向きと、映像から測ったカメラの動いた量）は、保存する PNG の中に入ります。
+</p>
+
+<h2>アプリが iPhone の中に保存するもの</h2>
+<ul>
+  <li>設定</li>
+  <li>
+    このアプリが保存した写真の識別子とファイル名の一覧（「これまでのスキャン」で見つけ直すため）。「ファイル名に座標を入れる」がオンのときは、ファイル名に座標が含まれます</li>
+</ul>
+<p>これ以外のデータは保存しません。これらは iPhone の外へ出ず、アプリを削除すると消えます。</p>
+
+<h2>USDZ ファイルの書き出し</h2>
+<p>
+  USDZ ファイルは、利用者が「USDZ」を押したときだけ作ります。中にはスキャンの画像が入ります。「ファイル名に座標を入れる」がオンのときは、ファイル名にも座標が入ります。ファイルの保存先や送り先は、利用者が共有の画面で選んだところだけです。
+</p>
+
+<h2>Apple を通じた情報</h2>
+<p>
+  iPhone の設定で、解析データを App デベロッパと共有することを許可している場合、クラッシュの情報などが Apple を通じて開発者に届くことがあります。これは iOS の仕組みで、アプリ自身が送るものではありません。
+</p>
+
+<h2>子どものプライバシー</h2>
+<p>本アプリは、子どもを特に対象にしたものではありません。また、誰からもデータを集めません。</p>
+
+<h2>変更について</h2>
+<p>本ポリシーを変更する場合は、このページを更新します。</p>
+
+<h2>開発者・お問い合わせ</h2>
+<p>開発者：古澤龍（Ryu Furusawa）</p>
+<ul>
+  <li>GitHub：<a href="https://github.com/RyuFurusawa/worldsurface/issues">github.com/RyuFurusawa/worldsurface/issues</a></li>
+  <li>メール：<a href="mailto:ryu.furusawa@gmail.com">ryu.furusawa@gmail.com</a></li>
+</ul>
+
+<footer>
+  <p><a href="index.html">サポート</a> ・ <a href="privacy.html">プライバシーポリシー</a> ・ <a href="en/privacy.html" lang="en">English</a></p>
+  <p>World Surface ・ 古澤龍</p>
+</footer>
+</div>
+</body>
+</html>

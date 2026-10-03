@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Surface Privacy Policy</title>
+<meta name="description" content="What data World Surface handles, and what it does not.">
+<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/worldsurface/privacy.html">
+<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/worldsurface/en/privacy.html">
+<style>
+:root {
+  --key: #1F6F78;
+  --key-deep: #144E55;
+  --on-key: #ffffff;
+  --warm: #B5562F;
+  --ink: #1c1c1e;
+  --muted: #5f6b70;
+  --line: #e1e8e9;
+  --bg: #ffffff;
+  --code-bg: #f3f8f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --key: #6CC3C8; --key-deep: #9ADDE0; --on-key: #0d2224; --warm: #E79A72;
+    --ink: #ececec; --muted: #a3acaf; --line: #2c3336; --bg: #111416; --code-bg: #1a1f21;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.7; font-size: 16px;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+.lang { display: flex; justify-content: flex-end; gap: 6px; padding-top: 18px; font-size: 14px; color: var(--muted); }
+.lang a { text-decoration: none; }
+.lang a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+header { padding: 24px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.brand { display: flex; align-items: center; gap: 16px; }
+.brand img { width: 68px; height: 68px; border-radius: 15px; flex: none; overflow: hidden; background: var(--code-bg); font-size: 11px; color: var(--muted); }
+h1 { font-size: 30px; margin: 0; letter-spacing: .01em; }
+.tagline { color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+h2 { font-size: 22px; margin: 52px 0 14px; padding-top: 8px; }
+h3 { font-size: 17px; margin: 32px 0 10px; }
+p, li { color: var(--ink); }
+a { color: var(--key); }
+code { background: var(--code-bg); padding: 2px 6px; border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; overflow-wrap: anywhere; }
+.note { border-left: 3px solid var(--key); background: var(--code-bg);
+  padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+.note p { margin: 0; }
+.note p + p { margin-top: 8px; }
+.warn { border-left-color: var(--warm); }
+footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="lang" aria-label="Language">
+  <a href="../privacy.html" lang="ja">日本語</a>
+  <span aria-hidden="true">/</span>
+  <a href="privacy.html" aria-current="page">English</a>
+</nav>
+
+<header>
+  <div class="brand">
+    <img src="../icon.png" alt="World Surface app icon">
+    <div>
+      <h1>Privacy Policy</h1>
+      <p class="tagline">World Surface</p>
+    </div>
+  </div>
+</header>
+
+<p>Effective date: 2026-10-03</p>
+
+<h2>Summary</h2>
+<div class="note">
+  <p>
+    World Surface has <strong>no accounts, no ads, no analytics and no tracking</strong>.
+    The app <strong>does not send any data over the network</strong>.
+    Capture, motion analysis (optical flow), face detection and 3D display all happen on your iPhone.
+    The developer does not receive any of your data.
+  </p>
+</div>
+
+<h2>Camera</h2>
+<p>
+  The back and front cameras are used to make scans.
+  Images are only kept when they are saved to your own Photos library.
+</p>
+<p>
+  The front-camera image shows whoever is holding the phone, usually you.
+  If you share a saved image, that part is shared too.
+</p>
+
+<h2>Face detection</h2>
+<p>
+  Only in the Lenticular view, and only while face position is turned on, the app looks for a face in the
+  front-camera picture to find where it is. This happens in real time on the device.
+  No images or face data are stored or sent anywhere.
+  The app only uses where the face is on screen; it does not try to recognize who it is.
+</p>
+
+<h2>Photos</h2>
+<ul>
+  <li>The app uses <strong>add-only</strong> access to save your scans to Photos.</li>
+  <li>
+    <strong>Read</strong> access is used only to show your own past scans in the app.
+    The app looks only for scans it saved, using the photo identifiers it noted at save time,
+    the “World Surface” album, and file names (PNG files whose names start with <code>slitscan_</code>).
+    It does not load, display or send the images of any other photos.
+  </li>
+  <li>The “World Surface” album is only created when you have given full Photos access.</li>
+</ul>
+
+<h2>Location</h2>
+<p>
+  Only when location recording is turned on in Settings, and <strong>only while the app is in use</strong>,
+  the app reads your location to record where each scan started. That location is stored in:
+</p>
+<ul>
+  <li>the Photos location of the saved image</li>
+  <li>the file name (if the option to add coordinates to the file name is on)</li>
+  <li>the orientation record inside the PNG</li>
+</ul>
+<p>The app never sends your location anywhere.</p>
+
+<div class="note warn">
+  <p>
+    <strong>Sharing a scan image or file also shares where it was taken.</strong>
+    Turn off the file-name option to keep coordinates out of file names,
+    or turn off location recording to stop recording location at all.
+    You can also revoke location access for the app at any time in the iPhone Settings app.
+  </p>
+</div>
+
+<h2>Motion sensors</h2>
+<p>
+  The gyroscope and accelerometer are used for horizon lock, for the orientation record,
+  and for detecting tilt in the Lenticular view.
+  The orientation record (which way the phone faced for each slit, plus how far the camera moved, measured from the video) is stored inside the saved PNG.
+</p>
+
+<h2>What the app keeps on your iPhone</h2>
+<ul>
+  <li>Your settings</li>
+  <li>
+    A list of the identifiers and file names of the photos it saved, so it can find them again in past scans.
+    If coordinates are added to file names, those file names include them.
+  </li>
+</ul>
+<p>Nothing else is kept. This data stays on the device and is removed when you delete the app.</p>
+
+<h2>USDZ export</h2>
+<p>
+  A USDZ file is only created when you choose to export one. It contains the scan images.
+  If coordinates are added to file names, the USDZ file name includes them too.
+  The file goes only where you send or save it from the share sheet.
+</p>
+
+<h2>Information shared through Apple</h2>
+<p>
+  If you have allowed your iPhone to share analytics with app developers,
+  Apple may pass crash reports and similar information to the developer.
+  This is part of iOS; the app itself does not send it.
+</p>
+
+<h2>Children</h2>
+<p>The app is not specifically directed at children, and it does not collect data from anyone.</p>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, this page will be updated.</p>
+
+<h2>Developer and contact</h2>
+<p>Developer: Ryu Furusawa (古澤龍)</p>
+<ul>
+  <li>GitHub: <a href="https://github.com/RyuFurusawa/worldsurface/issues">github.com/RyuFurusawa/worldsurface/issues</a></li>
+  <li>Email: <a href="mailto:ryu.furusawa@gmail.com">ryu.furusawa@gmail.com</a></li>
+</ul>
+
+<footer>
+  <p><a href="index.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="../privacy.html" lang="ja">日本語</a></p>
+  <p>World Surface · Ryu Furusawa</p>
+</footer>
+</div>
+</body>
+</html>

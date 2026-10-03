@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Surface サポート</title>
+<meta name="description" content="World Surface の使い方。背面と前面のカメラで同時にスリットスキャンし、世界の表面を集める iPhone アプリです。">
+<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/worldsurface/">
+<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/worldsurface/en/">
+<style>
+:root {
+  --key: #1F6F78;
+  --key-deep: #144E55;
+  --on-key: #ffffff;
+  --warm: #B5562F;
+  --ink: #1c1c1e;
+  --muted: #5f6b70;
+  --line: #e1e8e9;
+  --bg: #ffffff;
+  --code-bg: #f3f8f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --key: #6CC3C8; --key-deep: #9ADDE0; --on-key: #0d2224; --warm: #E79A72;
+    --ink: #ececec; --muted: #a3acaf; --line: #2c3336; --bg: #111416; --code-bg: #1a1f21;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.85; font-size: 16px;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+.lang { display: flex; justify-content: flex-end; gap: 6px; padding-top: 18px; font-size: 14px; color: var(--muted); }
+.lang a { text-decoration: none; }
+.lang a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+header { padding: 24px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.brand { display: flex; align-items: center; gap: 16px; }
+.brand img { width: 68px; height: 68px; border-radius: 15px; flex: none; overflow: hidden; background: var(--code-bg); font-size: 11px; color: var(--muted); }
+h1 { font-size: 30px; margin: 0; letter-spacing: .02em; }
+.tagline { color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+h2 { font-size: 22px; margin: 52px 0 14px; padding-top: 8px; }
+h3 { font-size: 17px; margin: 32px 0 10px; }
+p, li { color: var(--ink); }
+a { color: var(--key); }
+nav.toc { background: var(--code-bg); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-top: 28px; }
+nav.toc ol { margin: 0; padding-left: 22px; }
+nav.toc li { margin: 4px 0; }
+code { background: var(--code-bg); padding: 2px 6px; border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; overflow-wrap: anywhere; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+th { background: var(--code-bg); font-weight: 600; white-space: nowrap; }
+td:first-child { white-space: nowrap; }
+.note { border-left: 3px solid var(--key); background: var(--code-bg);
+  padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+.note p { margin: 0; }
+.note p + p { margin-top: 8px; }
+.warn { border-left-color: var(--warm); }
+ol.steps { padding-left: 0; list-style: none; counter-reset: step; }
+ol.steps > li { counter-increment: step; position: relative; padding-left: 44px; margin: 22px 0; }
+ol.steps > li::before {
+  content: counter(step); position: absolute; left: 0; top: 1px;
+  width: 30px; height: 30px; border-radius: 50%; background: var(--key); color: var(--on-key);
+  display: grid; place-items: center; font-weight: 700; font-size: 15px;
+}
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; margin: 20px 0; }
+.pair div { background: var(--code-bg); border: 1px solid var(--line); border-top: 3px solid var(--key);
+  border-radius: 10px; padding: 12px 16px; }
+.pair div.front { border-top-color: var(--warm); }
+.pair strong { display: block; }
+.pair span { color: var(--muted); font-size: 14px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: 20px; margin: 24px 0; }
+.shots figure { margin: 0; }
+.shots img { display: block; width: 100%; max-width: 300px; height: auto;
+  border-radius: 18px; border: 1px solid var(--line); background: var(--code-bg); }
+.shots figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; line-height: 1.6; }
+details { border: 1px solid var(--line); border-radius: 12px; padding: 4px 18px; margin: 20px 0; }
+details[open] { padding-bottom: 18px; }
+summary { cursor: pointer; padding: 14px 0; font-weight: 600; }
+footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px; }
+.pill { display: inline-block; background: var(--code-bg); border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 12px; font-size: 13px; color: var(--muted); margin: 2px 4px 2px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="lang" aria-label="言語">
+  <a href="index.html" aria-current="page" lang="ja">日本語</a>
+  <span aria-hidden="true">/</span>
+  <a href="en/index.html" lang="en">English</a>
+</nav>
+
+<header>
+  <div class="brand">
+    <img src="icon.png" alt="World Surface のアイコン">
+    <div>
+      <h1>World Surface</h1>
+      <p class="tagline">世界の表面を集めるカメラ</p>
+    </div>
+  </div>
+</header>
+
+<p>
+  World Surface は、世界中の面白い「表面（テクスチャ）」を集めるための iPhone アプリです。撮り方には<strong>スリットスキャン</strong>という方法を使います。
+</p>
+
+<p>
+  スリットスキャンでは、カメラの映像の真ん中から、縦に細い 1 本の線（スリット）だけを毎フレーム切り出し、時間の順に横へ並べていきます。できあがるのは、横に長い 1 枚の画像です。iPhone を横へ動かせば、通り過ぎた場所（空間）が画像になります。動かさずに構えておけば、その場所で起きた変化（時間）が画像になります。
+</p>
+
+<p>
+  World Surface は、<strong>背面と前面のカメラを同時に</strong>使います。1 回のスキャンに、次の 2 つが一緒に残ります。
+</p>
+
+<div class="pair">
+  <div><strong>背面カメラ</strong><span>目の前の世界</span></div>
+  <div class="front"><strong>前面カメラ</strong><span>こちら側。iPhone を持っている人</span></div>
+</div>
+
+<p>
+  <span class="pill">App Store 公開準備中</span>
+  <span class="pill">iPhone 11 以降・iOS 26 以降</span>
+</p>
+
+<nav class="toc" aria-label="目次">
+  <ol>
+    <li><a href="#scan">撮り方</a></li>
+    <li><a href="#screen">撮影中の画面</a></li>
+    <li><a href="#assist">撮影を助ける機能</a></li>
+    <li><a href="#viewer">3D で見る</a></li>
+    <li><a href="#save">保存されるもの</a></li>
+    <li><a href="#gallery">これまでのスキャン</a></li>
+    <li><a href="#tips">うまく撮るコツ</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+    <li><a href="#requirements">動作環境</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ol>
+</nav>
+
+<h2 id="scan">1. 撮り方</h2>
+
+<ol class="steps">
+  <li><p>アプリを開き、iPhone を撮りたいものに向けます。</p></li>
+  <li><p><strong>音量ボタン（＋・−のどちらでも）</strong>か<strong>カメラコントロール</strong>を押し続けます。押している間だけスキャンします。</p></li>
+  <li><p>指を離すと止まり、写真ライブラリに保存されます。続けて、結果が 3D の画面で開きます。</p></li>
+</ol>
+
+<p>カメラコントロールの無い iPhone でも、音量ボタンだけで使えます。</p>
+
+<div class="note">
+  <p>
+    押し続けるのが合わないときは、設定の「録画の操作」で<strong>タップで開始 / もう一度で停止</strong>に切り替えられます。1 回押すと始まり、もう 1 回押すと止まって保存されます。</p>
+</div>
+
+<h3>ボタンの割り当て</h3>
+<p>
+  iOS は、音量ボタンとカメラコントロールを、A（primary）と B（secondary）の 2 種類に分けてアプリに知らせます。設定の「物理ボタンの割り当て」で、A と B のそれぞれに次のどれかを割り当てられます。はじめは、どちらも「録画」です。
+</p>
+
+<table>
+  <tr><th>割り当て</th><th>押したときの動き</th></tr>
+  <tr><td>録画</td><td>スキャンの開始と停止</td></tr>
+  <tr><td>背面LEDの切り替え</td><td>撮影中に背面のライトを点けるかどうかを切り替える</td></tr>
+  <tr><td>水平維持の切り替え</td><td>水平維持（<a href="#horizon">後述</a>）のオンとオフを切り替える</td></tr>
+  <tr><td>使わない</td><td>何もしない</td></tr>
+</table>
+
+<p>A と B のどちらにも「録画」が無いときは、画面に録画ボタンが出ます。</p>
+
+<h2 id="screen">2. 撮影中の画面</h2>
+
+<p>
+  画面いっぱいに、スキャンしている途中の画像が出ます。背面カメラと前面カメラの結果は、縦持ちでは上下に、横持ちでは左右に並びます。
+</p>
+<p>
+  画面の隅には、2 台のカメラのいまの映像が小さく出ます。その上の<strong>赤い線</strong>が、スリットを切り出している位置です。
+</p>
+<p>
+  スキャンしている間は、画面の向きが固定されます。途中で iPhone を回しても、縦と横は入れ替わりません。
+</p>
+
+<div class="shots">
+  <figure>
+    <img src="shots/main.png" width="300" loading="lazy"
+         alt="スキャン中のメイン画面。背面カメラと前面カメラのスキャン結果が上下に並び、隅に 2 台のカメラの小さな映像が出ている">
+    <figcaption>スキャン中のメイン画面</figcaption>
+  </figure>
+</div>
+
+<h2 id="assist">3. 撮影を助ける機能</h2>
+
+<h3 id="motion">動きに合わせて速さを変える（オプティカルフロー）</h3>
+<p>
+  オプティカルフローとは、続けて撮った画像の差から、映っているものがどちらへどれだけ動いたかを求める方法です。World Surface はこれで画面の動きの大きさを測り、スリットを書き込む速さを変えます。
+</p>
+<ul>
+  <li>何も動いていないときは、書き込みを止めます（0 fps）。</li>
+  <li>動きが速いほど、1 秒あたりのスリットの数を増やします。上限は、カメラの最大の速さ（30 または 60 fps）です。</li>
+  <li>それでも追いつかないほど速いときは、1 本のスリットの幅を広げます（1〜20 px）。</li>
+</ul>
+<p>
+  iPhone を固定していても、映っているもの（人や水面など）が動けば反応します。この機能は設定の「オプティカルフロー連動 fps」で切れます。
+</p>
+
+<h3 id="horizon">水平維持（地平線ロック）</h3>
+<p>
+  ジャイロ（iPhone の傾きや回転を測るセンサー）を使い、iPhone が傾いても、スリットが世界に対して垂直のままになるように補正します。アクションカメラの「水平維持」と同じ考え方です。設定でオンとオフを選べます。
+</p>
+
+<h3>背面 LED</h3>
+<p>
+  スキャンしている間だけ、背面のライトを点けられます。設定でオンとオフを選べます。
+</p>
+
+<h2 id="viewer">4. 3D で見る</h2>
+
+<p>
+  スキャンを終えると、結果が 3D の画面で開きます（設定の「撮影後に自動で3D表示」で切れます）。画面の下で、3 通りの見せ方を選べます。
+</p>
+
+<h3>平面</h3>
+<p>
+  薄い板に画像を貼った形です。<strong>表が背面カメラ、裏が前面カメラ</strong>の画像です。ドラッグで回し、ピンチで拡大します。「反転」を押すと裏返ります。
+</p>
+
+<h3>立体</h3>
+<p>
+  スキャン中の iPhone の動きに沿って、板を曲げた形です。ジャイロで記録した<strong>向き</strong>と、オプティカルフローで測った<strong>実際に動いた量</strong>から組み立てます。
+</p>
+<table>
+  <tr><th>スキャン中の動き</th><th>できる形</th></tr>
+  <tr><td>まっすぐ横へ動かした</td><td>平らな板</td></tr>
+  <tr><td>木の幹などの周りを歩いて回った</td><td>外から見た円筒</td></tr>
+  <tr><td>その場で体ごと回った</td><td>内側から見る、パノラマのような曲面</td></tr>
+  <tr><td>上下に揺らした</td><td>波の形</td></tr>
+</table>
+<p>
+  動いた量から、スリットとスリットの間隔を決めます。そのため、ゆっくり動かしたところは縮み、速く動かしたところは伸びて、写したものの縦横の比が実物に近づきます。右へ動かしたか左へ動かしたかも分かるので、へこみと出っぱりは自動で決まります。
+</p>
+<p>
+  「実測」をオフにすると、向きだけで形を作ります（画像の縦横の比はそのまま）。このときは右と左を見分けられないので、形が逆に見えたら「凹凸」で入れ替えます。動いた量の記録が無い古いスキャンも、向きだけで作ります。
+</p>
+
+<h3>レンチキュラー</h3>
+<p>
+  レンチキュラーとは、細いかまぼこ形のレンズを並べたシートを重ねて、見る角度によって違う絵が見えるようにした印刷のことです。この見せ方では、2 枚の画像を細い縦縞に分けて、交互に並べます。
+</p>
+<p>
+  iPhone を左右に傾けると、背面カメラの画像と前面カメラの画像が切り替わります。その途中では、2 枚が縦縞になって混ざって見えます。
+</p>
+<p>
+  「顔の位置で切り替え」をオンにすると、傾きの代わりに、前面カメラで見つけた<strong>顔の位置</strong>で切り替わります。見ているのは顔が画面のどこにあるかで、目がどこを見ているか（視線）ではありません。
+</p>
+
+<h3>USDZ で書き出す</h3>
+<p>
+  平面と立体は、「USDZ」を押すと USDZ ファイル（Apple の 3D の形式）として書き出せます。立体を表示しているときは、曲げた形のまま書き出します。書き出したファイルは、「ファイル」アプリや AR クイックルックで開けます。
+</p>
+
+<div class="shots">
+  <figure>
+    <img src="shots/viewer-flat.png" width="300" loading="lazy"
+         alt="3D の画面の「平面」。スキャンした画像を貼った薄い板を、斜めから見たところ">
+    <figcaption>平面</figcaption>
+  </figure>
+  <figure>
+    <img src="shots/viewer-solid.png" width="300" loading="lazy"
+         alt="3D の画面の「立体」。スキャン中の iPhone の動きに沿って曲がった板">
+    <figcaption>立体</figcaption>
+  </figure>
+  <figure>
+    <img src="shots/lenticular.png" width="300" loading="lazy"
+         alt="3D の画面の「レンチキュラー」。背面カメラと前面カメラの画像が、細い縦縞になって混ざっている">
+    <figcaption>レンチキュラー</figcaption>
+  </figure>
+</div>
+
+<h2 id="save">5. 保存されるもの</h2>
+
+<h3>画像</h3>
+<p>
+  スキャンは PNG 形式で、写真ライブラリに自動で保存されます。保存されるのは、背面と前面を 1 枚にまとめた画像です。並べ方は、設定の「合成の並べ方」で選べます。
+</p>
+<ul>
+  <li>縦分割：背面が上、前面が下</li>
+  <li>横分割：背面が左、前面が右</li>
+</ul>
+<p>
+  「背面・前面を別々の画像でも保存」をオンにすると、背面だけ・前面だけの画像も保存します。ファイル名の末尾が <code>_back</code>・<code>_front</code> になります。
+</p>
+<p>
+  横持ちで撮ったものには、写真アプリで正しい向きに表示されるよう、向きの情報が付きます。写真へのアクセスが「すべての写真」のときは、アルバム「World Surface」にも入ります。
+</p>
+
+<h3 id="track">向きの記録</h3>
+<p>
+  スリット 1 本ごとに、その瞬間の iPhone の向き（ジャイロの値）を記録し、保存する PNG の中に入れます。PNG に文字のデータを足す仕組み（テキストチャンク）を使うので、画像はどのアプリでもふつうに開けます。あとで<a href="#gallery">これまでのスキャン</a>から開いたとき、この記録から立体の形を作り直します。
+</p>
+
+<h3 id="location">撮影場所（位置情報）</h3>
+<p>
+  設定の「撮影場所を記録」をオンにすると、<strong>スキャンを始めた場所</strong>を GPS で記録します。位置を取るのは、アプリを使っている間だけです。記録した場所は、次のところに入ります。
+</p>
+<ul>
+  <li>ファイル名。例：<code>slitscan_7998x3840_20261003-113147_N35.6812_E139.7671</code></li>
+  <li>写真アプリの「場所」（地図に出ます）</li>
+  <li>PNG の中の向きの記録</li>
+</ul>
+<p>3D の画面にも、記録した場所が表示されます。</p>
+
+<div class="note warn">
+  <p>
+    <strong>画像やファイルを人に渡すと、撮影場所も一緒に伝わります。</strong>ファイル名の座標だけを外したいときは、「ファイル名に座標を入れる」をオフにします。場所をまったく残したくないときは、「撮影場所を記録」をオフにしてください。</p>
+</div>
+
+<h2 id="gallery">6. これまでのスキャン</h2>
+
+<p>
+  メイン画面の右上から開きます。<strong>このアプリで保存したスキャンだけ</strong>が並び、ほかの写真は出ません。選ぶと、もう一度 3D の画面で開きます。
+</p>
+
+<div class="shots">
+  <figure>
+    <img src="shots/gallery.png" width="300" loading="lazy"
+         alt="「これまでのスキャン」の一覧。このアプリで保存したスキャンの小さな画像が並んでいる">
+    <figcaption>これまでのスキャン</figcaption>
+  </figure>
+</div>
+
+<h3>写真へのアクセスについて</h3>
+<p>
+  iOS では、アプリが写真ライブラリをどこまで使えるかを、利用者が段階で選びます。World Surface に必要なのは次のとおりです。
+</p>
+<ul>
+  <li><strong>保存するだけなら</strong>、「追加のみ」の許可で足ります。写真を読む許可は要りません。</li>
+  <li><strong>これまでのスキャンを見るには</strong>、写真を読む許可が要ります。初めて開いたときに確認されます。</li>
+</ul>
+
+<table>
+  <tr><th>読み取りの許可</th><th>できること</th></tr>
+  <tr><td>許可しない</td><td>これまでのスキャンは開けません。撮影と保存は、そのまま使えます。</td></tr>
+  <tr><td>選択した写真のみ</td><td>このアプリが保存したスキャンは見えます。この設定にする前に保存したものは、「写真を追加で選ぶ」で選ぶと見えるようになります。アルバムは作られません。</td></tr>
+  <tr><td>すべての写真</td><td>すべてのスキャンが見えます。アルバム「World Surface」も作られます。</td></tr>
+</table>
+
+<div class="note">
+  <p>
+    「すべての写真」を許可しても、このアプリが読むのは自分で保存したスキャンだけです。許可の段階は、iPhone の設定アプリで World Surface を開き、「写真」から変えられます。</p>
+</div>
+
+<h2 id="tips">7. うまく撮るコツ</h2>
+
+<ul>
+  <li><strong>表面を撮る：</strong>iPhone をしっかり持ち、壁や地面と平行のまま、ゆっくり横へ滑らせます。</li>
+  <li><strong>円筒にする：</strong>木の幹に iPhone を向けたまま、幹の周りを歩いて回ります。「立体」で見ると円筒になります。</li>
+  <li><strong>きれいに撮る：</strong>三脚やスライダーを使うと、動きが一定になり、乱れの少ない画像になります。</li>
+  <li><strong>時間を撮る：</strong>iPhone を固定すると、その場所で起きた変化が画像になります。動きが無い間は書き込みが止まるので、動きに関係なく書き込み続けたいときは、「オプティカルフロー連動 fps」を切ってください。</li>
+</ul>
+
+<div class="note warn">
+  <p>
+    <strong>電池と熱に注意してください。</strong>
+    4K の映像を 2 台のカメラで同時に処理するので、電池を多く使い、本体が熱くなることがあります。</p>
+  <p>
+    4K で長くスキャンすると、PNG は数十 MB の大きさになります。写真ライブラリの空きにも気をつけてください。</p>
+</div>
+
+<h2 id="faq">8. よくある質問</h2>
+
+<h3>アプリを開いている間、音量ボタンで音量が変わらない</h3>
+<p>
+  このアプリは、音量ボタンをシャッターのボタンとして使うためです。設定の「物理ボタンの割り当て」で、<strong>A と B の両方を「使わない」</strong>にすると、ふつうの音量ボタンに戻ります。そのときは、画面に録画ボタンが出ます。
+</p>
+
+<h3>なぜ 2 台のカメラが要るのですか</h3>
+<p>
+  このアプリは、目の前の世界と、撮っている側の両方を 1 回のスキャンに残すように作っています。そのため、背面と前面のカメラを同時に動かせる iPhone（iPhone 11 以降）でだけ使えます。
+</p>
+
+<h3>「立体」の形が裏返って見える</h3>
+<p>
+  「実測」がオンのときは、動いた向きから自動で決まります。オフのとき（向きだけで作るとき）は、iPhone を右へ動かしたのか左へ動かしたのかを見分けられないので、「凹凸」を押して入れ替えてください。
+</p>
+
+<h3>撮影場所はどこに残りますか。止めるには？</h3>
+<p>
+  ファイル名、写真アプリの「場所」、PNG の中の向きの記録に入ります。止めるには、設定の「撮影場所を記録」をオフにします。ファイル名の座標だけを外すなら、「ファイル名に座標を入れる」をオフにします。くわしくは<a href="#location">撮影場所</a>を見てください。
+</p>
+
+<h3>写真へのアクセスは、どれを選べばよいですか</h3>
+<p>
+  撮って保存するだけなら「追加のみ」で使えます。これまでのスキャンを 3D で見直すには「選択した写真のみ」か「すべての写真」が要ります。アルバム「World Surface」を作りたいときは「すべての写真」にしてください。どれを選んでも、このアプリが読むのは自分で保存したスキャンだけです。くわしくは<a href="#gallery">これまでのスキャン</a>を見てください。
+</p>
+
+<h2 id="requirements">9. 動作環境</h2>
+<ul>
+  <li>iPhone 11 以降（背面と前面のカメラを同時に使える機種）</li>
+  <li>iOS 26 以降</li>
+  <li>App Store 公開準備中です</li>
+</ul>
+
+<h2 id="contact">10. お問い合わせ</h2>
+<p>
+  不具合のご報告・ご要望は、下記までお願いします。iPhone の機種と iOS のバージョン、再現の手順を添えていただけると助かります。
+</p>
+<ul>
+  <li>GitHub：<a href="https://github.com/RyuFurusawa/worldsurface/issues">github.com/RyuFurusawa/worldsurface/issues</a></li>
+  <li>メール：<a href="mailto:ryu.furusawa@gmail.com">ryu.furusawa@gmail.com</a></li>
+</ul>
+<p>データの扱いについては、<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+
+<footer>
+  <p><a href="index.html">サポート</a> ・ <a href="privacy.html">プライバシーポリシー</a> ・ <a href="en/index.html" lang="en">English</a></p>
+  <p>World Surface ・ 古澤龍</p>
+</footer>
+</div>
+</body>
+</html>
