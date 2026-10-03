@@ -244,12 +244,13 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   <strong>The front face shows the back camera; the reverse shows the front camera.</strong>
   Drag to rotate, pinch to zoom, and use the flip button to turn it over.
   The shape is rebuilt from the <strong>orientation</strong> recorded by the gyroscope and the <strong>actual movement</strong> measured by optical flow.
+  Each camera's image goes on <strong>the side that camera was facing</strong>: the back camera's view on the back side of the phone, the front camera's on the screen side.
 </p>
 <table>
   <tr><th>How the phone moved</th><th>Resulting shape</th></tr>
   <tr><td>Straight sideways</td><td>A flat board</td></tr>
-  <tr><td>Walking around an object, such as a tree trunk</td><td>A cylinder seen from outside</td></tr>
-  <tr><td>Turning on the spot</td><td>A panorama-like curve seen from inside</td></tr>
+  <tr><td>Walking around an object, such as a tree trunk</td><td>A cylinder (the trunk's surface inside, you outside)</td></tr>
+  <tr><td>Turning on the spot, or circling the phone around your face</td><td>A panorama-like curve (the back camera's view outside, your face inside)</td></tr>
   <tr><td>Shaking up and down</td><td>Waves</td></tr>
 </table>
 <p>
