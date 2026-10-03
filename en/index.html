@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>World Surface Support</title>
-<meta name="description" content="How to use World Surface, an iPhone camera that slit-scans with the back and front cameras at once to collect surfaces from around the world.">
-<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/worldsurface/">
-<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/worldsurface/en/">
+<title>Surface Surfer Support</title>
+<meta name="description" content="How to use Surface Surfer, an iPhone app that slit-scans with the front and rear cameras at the same time.">
+<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/surfacesurfer/">
+<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/surfacesurfer/en/">
 <style>
 :root {
   --key: #1F6F78;
@@ -94,16 +94,17 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <header>
   <div class="brand">
-    <img src="../icon.png" alt="World Surface app icon">
+    <img src="../icon.png" alt="Surface Surfer app icon">
     <div>
-      <h1>World Surface</h1>
-      <p class="tagline">A camera for collecting the surfaces of the world</p>
+      <h1>Surface Surfer</h1>
+      <p class="tagline">Front &amp; rear dual-side scan</p>
     </div>
   </div>
 </header>
 
 <p>
-  World Surface is an iPhone camera for collecting interesting surfaces and textures,
+  Surface Surfer <strong>scans with the iPhone’s front and rear cameras at the same time</strong>.
+  Glide the phone over a surface, as if surfing it, to collect interesting surfaces and textures
   wherever you happen to find them. It works by <strong>slit-scanning</strong>.
 </p>
 
@@ -116,7 +117,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 </p>
 
 <p>
-  World Surface records with the <strong>back and front cameras at the same time</strong>,
+  Surface Surfer records with the <strong>back and front cameras at the same time</strong>,
   so every scan holds two things in one record:
 </p>
 
@@ -207,7 +208,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 <h3 id="motion">Speed that follows the motion (optical flow)</h3>
 <p>
   Optical flow is a way of measuring how far, and in which direction, things in the picture have moved
-  between one frame and the next. World Surface uses it to judge how much the picture is moving and
+  between one frame and the next. Surface Surfer uses it to judge how much the picture is moving and
   adjusts how fast it writes slits:
 </p>
 <ul>
@@ -322,7 +323,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 </p>
 <p>
   Scans made with the phone held sideways are tagged so that Photos shows them the right way up.
-  With full Photos access, scans are also added to an album named “World Surface”.
+  With full Photos access, scans are also added to an album named “Surface Surfer”.
 </p>
 
 <h3 id="track">Orientation record</h3>
@@ -370,7 +371,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3>About Photos access</h3>
 <p>
-  iOS lets you decide how much of your Photos library each app can use. World Surface needs:
+  iOS lets you decide how much of your Photos library each app can use. Surface Surfer needs:
 </p>
 <ul>
   <li><strong>To save scans:</strong> “add only” access is enough. The app does not need to read your photos for this.</li>
@@ -381,13 +382,13 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   <tr><th>Read access</th><th>What works</th></tr>
   <tr><td>None</td><td>Past scans cannot be opened. Scanning and saving still work.</td></tr>
   <tr><td>Limited access</td><td>Scans this app saved are visible. Scans saved before you chose limited access appear once you add them with “select more photos”. The album is not created.</td></tr>
-  <tr><td>Full access</td><td>All your scans are visible, and the “World Surface” album is created.</td></tr>
+  <tr><td>Full access</td><td>All your scans are visible, and the “Surface Surfer” album is created.</td></tr>
 </table>
 
 <div class="note">
   <p>
     Even with full access, the app only reads the scans it saved itself.
-    You can change the access level by opening World Surface in the iPhone Settings app and choosing Photos.
+    You can change the access level by opening Surface Surfer in the iPhone Settings app and choosing Photos.
   </p>
 </div>
 
@@ -441,14 +442,14 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 <h3>Which Photos access should I choose?</h3>
 <p>
   “Add only” is enough to scan and save. To look at past scans in 3D again, choose limited or full access.
-  The “World Surface” album is only created with full access.
+  The “Surface Surfer” album is only created with full access.
   Whichever you choose, the app only reads the scans it saved itself.
   See <a href="#gallery">Past scans</a> for details.
 </p>
 
 <h2 id="ads">9. Ads and "Remove Ads"</h2>
 <p>
-  To keep World Surface free, a small banner ad is shown at the bottom of the main screen. It never covers the scan.
+  To keep Surface Surfer free, a small banner ad is shown at the bottom of the main screen. It never covers the scan.
 </p>
 <ul>
   <li><strong>Remove Ads</strong>: buy "広告を消す" (Remove Ads) at the top of Settings (the gear, top right) and ads are no longer shown. It is a one-time purchase.</li>
@@ -471,14 +472,14 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   It helps to include your iPhone model, iOS version, and the steps that lead to the problem.
 </p>
 <ul>
-  <li>GitHub: <a href="https://github.com/RyuFurusawa/worldsurface/issues">github.com/RyuFurusawa/worldsurface/issues</a></li>
+  <li>GitHub: <a href="https://github.com/RyuFurusawa/surfacesurfer/issues">github.com/RyuFurusawa/surfacesurfer/issues</a></li>
   <li>Email: <a href="mailto:ryu.furusawa@gmail.com">ryu.furusawa@gmail.com</a></li>
 </ul>
 <p>For how the app handles your data, see the <a href="privacy.html">Privacy Policy</a>.</p>
 
 <footer>
   <p><a href="index.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="../index.html" lang="ja">日本語</a></p>
-  <p>World Surface · Ryu Furusawa</p>
+  <p>Surface Surfer · Ryu Furusawa</p>
 </footer>
 </div>
 </body>

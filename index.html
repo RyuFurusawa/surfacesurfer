@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>World Surface サポート</title>
-<meta name="description" content="World Surface の使い方。背面と前面のカメラで同時にスリットスキャンし、世界の表面を集める iPhone アプリです。">
-<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/worldsurface/">
-<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/worldsurface/en/">
+<title>Surface Surfer サポート</title>
+<meta name="description" content="Surface Surfer の使い方。iPhone のフロント（前面）とリア（背面）のカメラで、両面を同時にスリットスキャンするアプリです。">
+<link rel="alternate" hreflang="ja" href="https://ryufurusawa.github.io/surfacesurfer/">
+<link rel="alternate" hreflang="en" href="https://ryufurusawa.github.io/surfacesurfer/en/">
 <style>
 :root {
   --key: #1F6F78;
@@ -97,16 +97,16 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <header>
   <div class="brand">
-    <img src="icon.png" alt="World Surface のアイコン">
+    <img src="icon.png" alt="Surface Surfer のアイコン">
     <div>
-      <h1>World Surface</h1>
-      <p class="tagline">世界の表面を集めるカメラ</p>
+      <h1>Surface Surfer</h1>
+      <p class="tagline">フロント＆リア 両面同時スキャン</p>
     </div>
   </div>
 </header>
 
 <p>
-  World Surface は、世界中の面白い「表面（テクスチャ）」を集めるための iPhone アプリです。撮り方には<strong>スリットスキャン</strong>という方法を使います。
+  Surface Surfer は、iPhone の<strong>フロント（前面）とリア（背面）のカメラで、両面を同時にスキャン</strong>するアプリです。iPhone を表面の上で滑らせるように動かして、世界中の面白い「表面（テクスチャ）」を集めます。撮り方には<strong>スリットスキャン</strong>という方法を使います。
 </p>
 
 <p>
@@ -114,7 +114,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 </p>
 
 <p>
-  World Surface は、<strong>背面と前面のカメラを同時に</strong>使います。1 回のスキャンに、次の 2 つが一緒に残ります。
+  Surface Surfer は、<strong>背面と前面のカメラを同時に</strong>使います。1 回のスキャンに、次の 2 つが一緒に残ります。
 </p>
 
 <div class="pair">
@@ -197,7 +197,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3 id="motion">動きに合わせて速さを変える（オプティカルフロー）</h3>
 <p>
-  オプティカルフローとは、続けて撮った画像の差から、映っているものがどちらへどれだけ動いたかを求める方法です。World Surface はこれで画面の動きの大きさを測り、スリットを書き込む速さを変えます。
+  オプティカルフローとは、続けて撮った画像の差から、映っているものがどちらへどれだけ動いたかを求める方法です。Surface Surfer はこれで画面の動きの大きさを測り、スリットを書き込む速さを変えます。
 </p>
 <ul>
   <li>何も動いていないときは、書き込みを止めます（0 fps）。</li>
@@ -295,7 +295,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   「背面・前面を別々の画像でも保存」をオンにすると、背面だけ・前面だけの画像も保存します。ファイル名の末尾が <code>_back</code>・<code>_front</code> になります。
 </p>
 <p>
-  横持ちで撮ったものには、写真アプリで正しい向きに表示されるよう、向きの情報が付きます。写真へのアクセスが「すべての写真」のときは、アルバム「World Surface」にも入ります。
+  横持ちで撮ったものには、写真アプリで正しい向きに表示されるよう、向きの情報が付きます。写真へのアクセスが「すべての写真」のときは、アルバム「Surface Surfer」にも入ります。
 </p>
 
 <h3 id="track">向きの記録</h3>
@@ -335,7 +335,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3>写真へのアクセスについて</h3>
 <p>
-  iOS では、アプリが写真ライブラリをどこまで使えるかを、利用者が段階で選びます。World Surface に必要なのは次のとおりです。
+  iOS では、アプリが写真ライブラリをどこまで使えるかを、利用者が段階で選びます。Surface Surfer に必要なのは次のとおりです。
 </p>
 <ul>
   <li><strong>保存するだけなら</strong>、「追加のみ」の許可で足ります。写真を読む許可は要りません。</li>
@@ -346,12 +346,12 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   <tr><th>読み取りの許可</th><th>できること</th></tr>
   <tr><td>許可しない</td><td>これまでのスキャンは開けません。撮影と保存は、そのまま使えます。</td></tr>
   <tr><td>選択した写真のみ</td><td>このアプリが保存したスキャンは見えます。この設定にする前に保存したものは、「写真を追加で選ぶ」で選ぶと見えるようになります。アルバムは作られません。</td></tr>
-  <tr><td>すべての写真</td><td>すべてのスキャンが見えます。アルバム「World Surface」も作られます。</td></tr>
+  <tr><td>すべての写真</td><td>すべてのスキャンが見えます。アルバム「Surface Surfer」も作られます。</td></tr>
 </table>
 
 <div class="note">
   <p>
-    「すべての写真」を許可しても、このアプリが読むのは自分で保存したスキャンだけです。許可の段階は、iPhone の設定アプリで World Surface を開き、「写真」から変えられます。</p>
+    「すべての写真」を許可しても、このアプリが読むのは自分で保存したスキャンだけです。許可の段階は、iPhone の設定アプリで Surface Surfer を開き、「写真」から変えられます。</p>
 </div>
 
 <h2 id="tips">7. うまく撮るコツ</h2>
@@ -395,12 +395,12 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3>写真へのアクセスは、どれを選べばよいですか</h3>
 <p>
-  撮って保存するだけなら「追加のみ」で使えます。これまでのスキャンを 3D で見直すには「選択した写真のみ」か「すべての写真」が要ります。アルバム「World Surface」を作りたいときは「すべての写真」にしてください。どれを選んでも、このアプリが読むのは自分で保存したスキャンだけです。くわしくは<a href="#gallery">これまでのスキャン</a>を見てください。
+  撮って保存するだけなら「追加のみ」で使えます。これまでのスキャンを 3D で見直すには「選択した写真のみ」か「すべての写真」が要ります。アルバム「Surface Surfer」を作りたいときは「すべての写真」にしてください。どれを選んでも、このアプリが読むのは自分で保存したスキャンだけです。くわしくは<a href="#gallery">これまでのスキャン</a>を見てください。
 </p>
 
 <h2 id="ads">9. 広告と「広告を消す」</h2>
 <p>
-  World Surface は無料で使えるように、メイン画面の下に小さなバナー広告を表示します。広告はスキャンの画像には重なりません。
+  Surface Surfer は無料で使えるように、メイン画面の下に小さなバナー広告を表示します。広告はスキャンの画像には重なりません。
 </p>
 <ul>
   <li><strong>広告を消す</strong>：設定（右上の歯車）のいちばん上の「広告を消す」から購入すると、広告が表示されなくなります。1 回だけの購入です。</li>
@@ -422,14 +422,14 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   不具合のご報告・ご要望は、下記までお願いします。iPhone の機種と iOS のバージョン、再現の手順を添えていただけると助かります。
 </p>
 <ul>
-  <li>GitHub：<a href="https://github.com/RyuFurusawa/worldsurface/issues">github.com/RyuFurusawa/worldsurface/issues</a></li>
+  <li>GitHub：<a href="https://github.com/RyuFurusawa/surfacesurfer/issues">github.com/RyuFurusawa/surfacesurfer/issues</a></li>
   <li>メール：<a href="mailto:ryu.furusawa@gmail.com">ryu.furusawa@gmail.com</a></li>
 </ul>
 <p>データの扱いについては、<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
 
 <footer>
   <p><a href="index.html">サポート</a> ・ <a href="privacy.html">プライバシーポリシー</a> ・ <a href="en/index.html" lang="en">English</a></p>
-  <p>World Surface ・ 古澤龍</p>
+  <p>Surface Surfer ・ 古澤龍</p>
 </footer>
 </div>
 </body>
