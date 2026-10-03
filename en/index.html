@@ -235,18 +235,14 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <p>
   When a scan ends, it opens in a 3D view. (You can turn this off in Settings.)
-  Along the bottom you can choose between three ways of looking at it.
-</p>
-
-<h3>Flat</h3>
-<p>
-  The scan as a thin board. <strong>The front face shows the back camera; the reverse shows the front camera.</strong>
-  Drag to rotate, pinch to zoom, and use the flip button to turn the board over.
+  Along the bottom you can choose between two ways of looking at it.
 </p>
 
 <h3>Solid</h3>
 <p>
   The board is bent to follow how the phone moved during the scan.
+  <strong>The front face shows the back camera; the reverse shows the front camera.</strong>
+  Drag to rotate, pinch to zoom, and use the flip button to turn it over.
   The shape is rebuilt from the <strong>orientation</strong> recorded by the gyroscope and the <strong>actual movement</strong> measured by optical flow.
 </p>
 <table>
@@ -283,17 +279,11 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3>Exporting USDZ</h3>
 <p>
-  Flat and Solid can be exported as a USDZ file (Apple’s 3D file format).
-  If you are looking at Solid, the bent shape is what gets exported.
+  Solid can be exported as a USDZ file (Apple’s 3D file format), keeping its bent shape.
   The file opens in the Files app and in AR Quick Look.
 </p>
 
 <div class="shots">
-  <figure>
-    <img src="../shots/viewer-flat.jpg" width="300" height="652" loading="lazy"
-         alt="3D view in Flat mode: a thin board carrying the scan, seen at an angle">
-    <figcaption>Flat</figcaption>
-  </figure>
   <figure>
     <img src="../shots/viewer-solid.jpg" width="300" height="652" loading="lazy"
          alt="3D view in Solid mode: the board bent to follow how the phone moved during the scan">

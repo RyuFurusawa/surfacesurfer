@@ -221,17 +221,12 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 <h2 id="viewer">4. 3D で見る</h2>
 
 <p>
-  スキャンを終えると、結果が 3D の画面で開きます（設定の「撮影後に自動で3D表示」で切れます）。画面の下で、3 通りの見せ方を選べます。
-</p>
-
-<h3>平面</h3>
-<p>
-  薄い板に画像を貼った形です。<strong>表が背面カメラ、裏が前面カメラ</strong>の画像です。ドラッグで回し、ピンチで拡大します。「反転」を押すと裏返ります。
+  スキャンを終えると、結果が 3D の画面で開きます（設定の「撮影後に自動で3D表示」で切れます）。画面の下で、2 通りの見せ方を選べます。
 </p>
 
 <h3>立体</h3>
 <p>
-  スキャン中の iPhone の動きに沿って、板を曲げた形です。ジャイロで記録した<strong>向き</strong>と、オプティカルフローで測った<strong>実際に動いた量</strong>から組み立てます。
+  スキャン中の iPhone の動きに沿って、板を曲げた形です。<strong>表が背面カメラ、裏が前面カメラ</strong>の画像です。ドラッグで回し、ピンチで拡大します。「反転」を押すと裏返ります。ジャイロで記録した<strong>向き</strong>と、オプティカルフローで測った<strong>実際に動いた量</strong>から組み立てます。
 </p>
 <table>
   <tr><th>スキャン中の動き</th><th>できる形</th></tr>
@@ -260,15 +255,10 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3>USDZ で書き出す</h3>
 <p>
-  平面と立体は、「USDZ」を押すと USDZ ファイル（Apple の 3D の形式）として書き出せます。立体を表示しているときは、曲げた形のまま書き出します。書き出したファイルは、「ファイル」アプリや AR クイックルックで開けます。
+  立体は、「USDZ」を押すと USDZ ファイル（Apple の 3D の形式）として、曲げた形のまま書き出せます。書き出したファイルは、「ファイル」アプリや AR クイックルックで開けます。
 </p>
 
 <div class="shots">
-  <figure>
-    <img src="shots/viewer-flat.jpg" width="300" height="652" loading="lazy"
-         alt="3D の画面の「平面」。スキャンした画像を貼った薄い板を、斜めから見たところ">
-    <figcaption>平面</figcaption>
-  </figure>
   <figure>
     <img src="shots/viewer-solid.jpg" width="300" height="652" loading="lazy"
          alt="3D の画面の「立体」。スキャン中の iPhone の動きに沿って曲がった板">
