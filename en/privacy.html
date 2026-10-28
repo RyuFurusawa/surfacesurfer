@@ -74,7 +74,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   </div>
 </header>
 
-<p>Effective date: 2026-10-03</p>
+<p>Effective date: 2026-10-03 (revised 2026-10-29: ads and in-app purchases removed)</p>
 
 <h2>Summary</h2>
 <div class="note">
@@ -84,8 +84,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
     and the app never sends your images, scan locations or orientation records anywhere. The developer does not receive them.
   </p>
   <p>
-    To show the <strong>banner ad</strong> at the bottom of the screen, Google's ad service (AdMob) uses information such as device identifiers (see <a href="#ads">Ads</a>).
-    If you buy the in-app purchase "Remove Ads", no ads are shown and no ad requests are made.
+    There are no ads and no in-app purchases (from version 1.3), and the app does not track you.
   </p>
 </div>
 
@@ -164,31 +163,15 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   The file goes only where you send or save it from the share sheet.
 </p>
 
-<h2 id="ads">Ads</h2>
+<h2 id="ads">Ads and in-app purchases</h2>
 <p>
-  To keep Surface Surfer free, a Google AdMob banner is shown at the bottom of the screen.
-  To show ads, Google's ad SDK collects the following and sends it to Google (according to Google's disclosure):
+  From version 1.3, Surface Surfer no longer shows ads or offers in-app purchases.
+  Google's ad service (AdMob) is no longer included in the app, and the app does not ask for tracking permission.
 </p>
-<ul>
-  <li>IP address (used to estimate a general location)</li>
-  <li>Device identifiers (the advertising identifier, or identifiers scoped to the app or developer)</li>
-  <li>Ads you have seen, and interactions such as app launches and taps</li>
-  <li>Crash and performance information (such as launch time)</li>
-</ul>
 <p>
-  This is used to show ads, measure them and prevent fraud.
-  For how Google handles it, see <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use our services</a>.
-</p>
-<ul>
-  <li><strong>Tracking permission</strong>: the first time you use the app, iOS asks whether to allow tracking. If you don't allow it, the advertising identifier is not used and the ads are not personalized. The app works the same either way. You can change this later in Settings → Privacy &amp; Security → Tracking.</li>
-  <li><strong>EU, UK and similar regions</strong>: where the law requires it, Google's consent screen appears before ads. You can change your choice at any time from "Ad privacy settings" in the app's Settings.</li>
-  <li>Your images, scan locations, orientation records and face detection results are never used for ads.</li>
-</ul>
-
-<h2>In-app purchase (Remove Ads)</h2>
-<p>
-  The purchase and payment for "Remove Ads" are handled by Apple's App Store. The developer does not receive any payment information.
-  The app checks the purchase status on your iPhone from the App Store's records.
+  Versions up to 1.2 showed a Google AdMob banner at the bottom of the screen, and Google used information such as device identifiers to show those ads.
+  In-app purchases were handled by Apple's App Store, and the developer never received any payment information.
+  If you are still using an older version, please update to the latest version from the App Store.
 </p>
 
 <h2>Information shared through Apple</h2>
@@ -199,7 +182,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 </p>
 
 <h2>Children</h2>
-<p>The app is not specifically directed at children. The app itself does not collect data from anyone; for ads, see <a href="#ads">Ads</a> above.</p>
+<p>The app is not specifically directed at children. The app does not collect data from anyone.</p>
 
 <h2>Changes to this policy</h2>
 <p>If this policy changes, this page will be updated.</p>
