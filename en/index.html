@@ -199,16 +199,19 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 <h2 id="screen">2. The screen while scanning</h2>
 
 <p>
-  The scan fills the screen as it grows. The back-camera and front-camera results are shown
-  one above the other when you hold the phone upright, and side by side when you hold it sideways.
+  Before you scan, the live views of the back and front cameras fill the screen, one above the other when you hold the phone upright
+  and side by side when you hold it sideways. The <strong>red line</strong> in the middle marks where the slit is taken.
 </p>
 <p>
-  Small live previews of both cameras sit in a corner. The <strong>red line</strong> on them marks
-  where the slit is being taken.
+  When you start scanning, the scan grows in their place, and the two images face each other across the center line.
+  Small live views of both cameras then appear at the bottom right, and the red line along the top edge shows how close the scan is to its maximum width.
 </p>
 <p>
-  Tap the small back camera preview to choose the back lens (Ultra Wide, Wide or Telephoto). The lenses available depend on your iPhone.
-  The lens in use and its field of view appear on the "cam:" line of the status display at the top left. You can also choose it under Camera in Settings.
+  Choose the back lens (Ultra Wide, Wide or Telephoto) with the "0.5×", "1×" and telephoto buttons at the bottom right. The lenses available depend on your iPhone.
+  The lens in use appears in the status display at the top left. You can also choose it under Camera in Settings.
+</p>
+<p>
+  Your latest scan appears at the bottom left. Tap it to open it in 3D.
 </p>
 <p>
   The screen orientation is locked during a scan, so turning the phone partway through will not flip the layout.
@@ -254,8 +257,8 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   The live view is hidden while it is on.
 </p>
 <p>
-  Switch each one with a lightning button on the main screen: the back LED at the top right of the back camera result (the upper half in portrait),
-  the front flash at the top right of the front camera result (the lower half in portrait). Yellow means on. Both can also be switched in Settings.
+  Switch each one with a lightning button on the main screen: the back LED at the top right of the back camera view (the upper half in portrait),
+  the front flash at the top right of the front camera view (the lower half in portrait). Yellow means on. Both can also be switched in Settings.
 </p>
 
 <h2 id="viewer">4. Viewing in 3D</h2>
@@ -269,7 +272,7 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 <p>
   The board is bent to follow how the phone moved during the scan.
   <strong>The front face shows the back camera; the reverse shows the front camera.</strong>
-  Drag to rotate, pinch to zoom, and use the flip button to turn it over.
+  Drag to rotate, pinch to zoom, and use the round buttons below to turn it over or reset the view.
   The shape is rebuilt from the <strong>orientation</strong> recorded by the gyroscope and the <strong>actual movement</strong> measured by optical flow.
   Each camera's image goes on <strong>the side that camera was facing</strong>: the back camera's view on the back side of the phone, the front camera's on the screen side.
 </p>
@@ -285,8 +288,8 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
   Because the app also knows whether you moved left or right, hollows and bulges are decided automatically.
 </p>
 <p>
-  Turn off the measured-movement button to build the shape from orientation alone (the image keeps its own proportions).
-  Orientation alone cannot tell left from right, so if the shape looks inside out, use the reverse button to swap hollows and bulges.
+  In the "Shape" menu, turn off "Shape as you moved" to build the shape from orientation alone (the image keeps its own proportions).
+  Orientation alone cannot tell left from right, so if the shape looks inside out, use "Swap concave and convex" in the same menu.
   Older scans without a movement record are also built from orientation alone.
 </p>
 
@@ -449,8 +452,8 @@ footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
 
 <h3>The Solid shape looks inside out</h3>
 <p>
-  With measured movement on, this is decided automatically from the direction you moved.
-  With it off (orientation only), the app cannot tell whether the phone moved left or right, so tap the reverse button to swap the hollows and bulges.
+  With "Shape as you moved" on (in the "Shape" menu), this is decided automatically from the direction you moved.
+  With it off (orientation only), the app cannot tell whether the phone moved left or right, so use "Swap concave and convex" in the same menu.
 </p>
 
 <h3>Where is the location stored, and how do I turn it off?</h3>
